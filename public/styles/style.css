@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Orbitron&family=Parkinsans:wght@300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&family=Varela+Round&display=swap');
+
+
+        .varela-round-regular {
+        font-family: "Varela Round", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Varela Round", sans-serif;
+        
+    }
+
+    header {    
+        background-color: hsl(124, 19%, 29%);
+
+    }
+     
+
+    /* navbar functie */
+    nav {
+        background-color: #3C593E;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .hamburger {
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+        margin-left: auto;
+        
+        @media (min-width: 767px) {
+            display: none;
+        }
+    }
+
+/* Standaard verberg het menu op mobiel */
+    .nav {
+        font-family: "Varela Round", sans-serif;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #3C593E;
+        position: absolute;
+        top: 99px;
+        left: 0;
+
+        @media (min-width: 767px) {
+            display: flex;
+            flex-direction: row;
+            position: static;
+            width: auto;
+        }
+    }
+
+    .nav.active {
+        display: flex;
+    }
+
+    .nav li {
+        text-align: center;
+
+        @media (min-width: 767px) {
+            position: relative;
+        }
+    }
+
+    .nav a {
+        text-decoration: none;
+        color: white;
+        padding: 15px;
+        display: block;
+        transition: background 0.3s ease;
+    }
+
+    .nav a:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Submenu standaard verbergen */
+    .submenu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: none;
+        background: #3C593E;
+
+        @media (min-width: 767px) {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: none;
+            min-width: 150px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+    }
+
+    .nav li:focus-within .submenu,
+    .nav li:active .submenu {
+        display: block;
+    }
+
+    .submenu a {
+        padding: 10px;
+        display: block;
+
+        @media (min-width: 767px) {
+            display: block;
+        }
+    }
+
+    main{
+        display: grid;
+        background-color: #F9E9C2;
+        text-align: center;
+    }
+    
+    section{
+        background-image: url("../assets/image-46.png");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 90vh;
+    }
+
+    h1{
+    
+        text-align: center;
+        font-family: "Varela Round", sans-serif;
+        font-style: normal;
+        color: white;
+        font-size: 70px;
+    }
+
+    h2{
+        padding-top: 35%;
+        color: #3C593E;
+        text-align: center;
+        font-family: "Varela Round", sans-serif;
+    }
+
+   .images{
+    border: 2px solid red;
+   }
+
+   button{
+    all: unset; 
+   }
