@@ -1,74 +1,98 @@
-// Importeer het npm package Express (uit de door npm aangemaakte node_modules map)
-// Deze package is geïnstalleerd via `npm install`, en staat als 'dependency' in package.json
+// Importeer Express, een framework voor het bouwen van webservers
 import express from 'express'
 
-// Importeer de Liquid package (ook als dependency via npm geïnstalleerd)
+// Importeer de Liquid template-engine voor dynamische HTML-rendering
 import { Liquid } from 'liquidjs';
 
-// Maak een nieuwe Express applicatie aan, waarin we de server configureren
+// Maak een nieuwe Express-app aan
 const app = express()
 
-// Maak werken met data uit formulieren iets prettiger
-app.use(express.urlencoded({extended: true}))
+const userId = 5
 
-// Gebruik de map 'public' voor statische bestanden (resources zoals CSS, JavaScript, afbeeldingen en fonts)
-// Bestanden in deze map kunnen dus door de browser gebruikt worden
+// Maak de map 'public' toegankelijk voor statische bestanden zoals CSS, JS en afbeeldingen
 app.use(express.static('public'))
 
-// Stel Liquid in als 'view engine'
+// Stel Liquid in als template-engine voor het renderen van HTML-pagina's
 const engine = new Liquid();
-app.engine('liquid', engine.express());
+app.engine('liquid', engine.express()); 
 
-// Stel de map met Liquid templates in
-// Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
+// Geeft aan waar de views (templates) zich bevinden
 app.set('views', './views')
 
-
-console.log('Let op: Er zijn nog geen routes. Voeg hier dus eerst jouw GET en POST routes toe.')
-
-/*
-// Zie https://expressjs.com/en/5x/api.html#app.get.method over app.get()
-app.get(…, async function (request, response) {
+// GET route voor de homepage ('/') staat voor url domeinnaam
+app.get('/', async function (request, response) {
   
-  // Zie https://expressjs.com/en/5x/api.html#res.render over response.render()
-  response.render(…)
+   // Haal de stekjes-data op van de externe API (fetchen = ophalen)
+   const stekjesResponse = await fetch('https://fdnd-agency.directus.app/items/bib_stekjes');
+
+   // Zet de response om in JSON-formaat
+   const stekjesResponseJSON = await stekjesResponse.json();
+
+   // Render de 'index.liquid' pagina en geef de opgehaalde data mee
+   response.render('index.liquid', {
+    stekjes: stekjesResponseJSON.data
+   })
 })
-*/
 
-/*
-// Zie https://expressjs.com/en/5x/api.html#app.post.method over app.post()
-app.post(…, async function (request, response) {
+// GET route voor de detailpagina van een stekje ('/stekjes/:id')
+app.get('/stekjes/:id', async function (request, response) {
+  // Haal het ID van het stekje uit de URL
+  const stekjeId = request.params.id;
 
-  // In request.body zitten alle formuliervelden die een `name` attribuut hebben in je HTML
-  console.log(request.body)
+  // Doe een fetch-verzoek naar de API om de specifieke stekje-data op te halen
+  const stekjeResponse = await fetch(`https://fdnd-agency.directus.app/items/bib_stekjes/${stekjeId}`);
+  // Zet de response om in JSON-formaat
+  const stekjeData = await stekjeResponse.json();
 
-  // Via een fetch() naar Directus vullen we nieuwe gegevens in
+  // Render de 'stekjes.liquid' pagina en geef de opgehaalde stekje-data mee
+  response.render('stekjes.liquid', { stekje: stekjeData.data })
+});
 
-  // Zie https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch over fetch()
-  // Zie https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify over JSON.stringify()
-  // Zie https://docs.directus.io/reference/items.html#create-an-item over het toevoegen van gegevens in Directus
-  // Zie https://docs.directus.io/reference/items.html#update-an-item over het veranderen van gegevens in Directus
-  await fetch(…, {
-    method: …,
-    body: JSON.stringify(…),
-    headers: {
-      'Content-Type': 'application/json;charset=UTF-8'
+// POST route voor het verwerken van formulieren op de homepage ('/')
+app.post('/stekjes/:id', async function (request, response) {
+  const stekjeId = request.params.id;
+    // Log de ontvangen aanvraag in de console (handig voor debugging)
+    // console.log('Verzoek ontvangen:', request.body);
+    // check eerst in bib_users_stekjes of dit stekjeID en deze userID al bestaan
+    const userstekjeEntry = await fetch(`https://fdnd-agency.directus.app/items/bib_users_stekjes?filter={"bib_stekjes_id":${stekjeId},"bib_users_id":${userId}}`)
+    const userstekjeEntryJSON = await userstekjeEntry.json()
+
+    if (userstekjeEntryJSON.data.length != 0) {
+      // Delete de boel uit Directus
+      await fetch(`https://fdnd-agency.directus.app/items/bib_users_stekjes/${userstekjeEntryJSON.data[0].id}`, {
+        method: 'DELETE'
+      });
+    } else {
+      // Stuur een POST-verzoek naar de API om een nieuw bericht op te slaan
+      const directusResponse = await fetch('https://fdnd-agency.directus.app/items/bib_users_stekjes', {
+        method: 'POST',
+        body: JSON.stringify({
+          bib_stekjes_id: stekjeId, // Koppel het bericht aan het juiste stekje
+          bib_users_id: 5, // ID van de gebruiker (dit kan dynamisch worden)
+        }),
+        headers: {
+          'Content-Type': 'application/json' // Geef aan dat de data JSON is
+        }
+      });
+
     }
-  });
+    // Log de status van de API-response in de console
+    //console.log('Directus API antwoord:', directusResponse.status);
+    
+    // Stuur de gebruiker terug naar de homepage na een succesvolle aanvraag
+    response.redirect(303, '/');
 
-  // Redirect de gebruiker daarna naar een logische volgende stap
-  // Zie https://expressjs.com/en/5x/api.html#res.redirect over response.redirect()
-  response.redirect(303, …)
-})
-*/
+});
 
+// // Middleware voor 404-fout (pagina niet gevonden)
+// app.use((req, res, next) => {
+//   res.status(404).send("Error! Pagina niet gevonden.");
+// })
 
-// Stel het poortnummer in waar Express op moet gaan luisteren
-// Lokaal is dit poort 8000; als deze applicatie ergens gehost wordt, waarschijnlijk poort 80
-app.set('port', process.env.PORT || 8000)
+// Stel het poortnummer in waar Express op moet luisteren (standaard: 8006)
+app.set('port', process.env.PORT || 8006)
 
-// Start Express op, gebruik daarbij het zojuist ingestelde poortnummer op
+// Start de server en laat een bericht zien in de console
 app.listen(app.get('port'), function () {
-  // Toon een bericht in de console
-  console.log(`Daarna kun je via http://localhost:${app.get('port')}/ jouw interactieve website bekijken.\n\nThe Web is for Everyone. Maak mooie dingen 🙂`)
+  console.log(`Application started on http://localhost:${app.get('port')}`)
 })

@@ -6,11 +6,12 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Varela Round", sans-serif;
+    font-family: 'Mulish', sans-serif;
 }
 
 header {    
     background-color: var(--main-color-green);
+    
 }
 
 /* Navbar styling */
@@ -38,7 +39,7 @@ nav {
         list-style: none;
         padding: 0;
         margin: 0;
-        background: #3C593E;
+        background-color: var(--main-color-green);
         position: absolute;
         top: 99px;
         left: 0;
@@ -78,7 +79,7 @@ nav {
                 list-style: none;
                 padding: 0;
                 margin: 0;
-                background: #3C593E;
+                background-color: var(--main-color-green);
                 display: none;
 
                 @media (min-width: 767px) {
@@ -107,7 +108,7 @@ nav {
 /* Main styling */
 main {
     display: grid;
-    background-color: #F9E9C2;
+    background-color: var(--main-color-beige);
     text-align: center;
 }
 
@@ -131,13 +132,13 @@ h1 {
 }
 
 h2 {
-    padding-top: 35%;
+    padding-top: 5%;
     color: #3C593E;
 }
 
 /* Afbeeldingen */
 .images {
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
 
 /* Knoppen */
