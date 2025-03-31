@@ -11,21 +11,28 @@
 
     <h2>Vind jouw favoriet in onze geliefde collectie!</h2>
 
-    {% for stekje in stekjes %}
-        <article class="images">
-            <a href="/stekjes/{{ stekje.id }}">
-                <p>{{ stekje.naam }}</p>
-            </a>
-            <img src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}" 
-                 alt="Foto van stekje {{ stekje.naam }}" 
-                 width="200" height="250">
-
-            <form action="/stekjes/{{ stekje.id }}" method="POST">
-                <input type="hidden" name="from" value="{{ stekje.id }}">
-                <button type="submit" class="like-button" aria-label="Like {{ stekje.naam }}">
-                    <img class="heart" src="/assets/like.svg" alt="Like knop" width="30" height="30">
-                </button>
-            </form>
-        </article>
-    {% endfor %}
+    {% if stekjes.size > 0 %}
+        {% for stekje in stekjes %}
+            
+            <article class="images">
+                <a href="/stekjes/{{ stekje.id }}">
+                    <p>{{ stekje.naam }}</p>
+                </a>
+                <img src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}" 
+                     alt="Foto van stekje {{ stekje.naam }}" 
+                     width="200" height="250">
+                <form action="/stekjes/{{ stekje.id }}" method="POST">
+                    <input type="hidden" name="from" value="{{ stekje.id }}">
+                    <button type="submit" class="like-button" aria-label="Like {{ stekje.naam }}">
+                        <img class="heart" src="/assets/like.svg" alt="Like knop" width="30" height="30">
+                    </button>
+                </form>
+            </article>
+            
+        {% endfor %}
+        {% else %}
+        <p>Er zijn momenteel geen stekjes beschikbaar.</p>
+    {% endif %}
+   
+    
 </main>

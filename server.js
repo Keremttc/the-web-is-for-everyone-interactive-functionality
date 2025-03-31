@@ -30,7 +30,7 @@ app.get('/', async function (request, response) {
 
    // Render de 'index.liquid' pagina en geef de opgehaalde data mee
    response.render('index.liquid', {
-    stekjes: stekjesResponseJSON.data
+    stekjes : stekjesResponseJSON.data
    })
 })
 
@@ -57,6 +57,7 @@ app.post('/stekjes/:id', async function (request, response) {
     const userstekjeEntry = await fetch(`https://fdnd-agency.directus.app/items/bib_users_stekjes?filter={"bib_stekjes_id":${stekjeId},"bib_users_id":${userId}}`)
     const userstekjeEntryJSON = await userstekjeEntry.json()
 
+    console.log(request.params.id)
     if (userstekjeEntryJSON.data.length != 0) {
       // Delete de boel uit Directus
       await fetch(`https://fdnd-agency.directus.app/items/bib_users_stekjes/${userstekjeEntryJSON.data[0].id}`, {
