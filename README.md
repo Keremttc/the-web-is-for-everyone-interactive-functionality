@@ -36,20 +36,22 @@ https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/
 https://github.com/Keremttc/the-web-is-for-everyone-interactive-functionality/tree/main/public/styles
 
 ### CSS
-Ik heb in mijn css gebruik gemaakt van custom proerties om de huisstijl van Bieb in bloei te behouden.Verder heb ik gebruik gemaakt van nesting in de css, zodat de code makkelijker lezen en veranderen is.
+Ik heb in mijn css gebruik gemaakt van custom proerties om de huisstijl van Bieb in bloei te behouden. Verder heb ik gebruik gemaakt van nesting in de css, zodat de code makkelijker lezen en veranderen is. Ook maak ik gebruik van keyframes voor mijn loading state. En ik pas de rooting toe.
 https://github.com/Keremttc/the-web-is-for-everyone-interactive-functionality/tree/main/public/styles
 
 
 ### JavaScript
 
 #### De GET
-Om de data kunnen ophalen van de directus data base heb ik get request uitgevierd in mijn [server.js](https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/main/server.js)
-https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/4b341bbe56527ed4b8a015aa6d524832c81b05ca/server.js#L54-L94
-https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/4b341bbe56527ed4b8a015aa6d524832c81b05ca/server.js#L97-L105
+Om de data kunnen ophalen van de directus data base heb ik get request uitgevierd in mijn Server.js 
+https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/4b341bbe56527ed4b8a015aa6d524832c81b05ca/server.js#L82-L92
 
 #### De POST
-https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/4b341bbe56527ed4b8a015aa6d524832c81b05ca/server.js#L107-L121
+https://github.com/Keremttc/the-web-is-for-everyone-interactive-functionality/blob/main/server.js#L23-L33
 
 
 # Website link
 https://the-web-is-for-everyone-interactive-bm62.onrender.com/
+![Screenshot 2025-04-02 141106-portrait](https://github.com/user-attachments/assets/58e409cc-333a-4fe3-b87e-f9d2e9e18e34)
+
+
