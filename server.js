@@ -27,25 +27,48 @@ app.get('/', async function (request, response) {
 
    // Zet de response om in JSON-formaat
    const stekjesResponseJSON = await stekjesResponse.json();
+ 
+   const likedStekjes = await fetch('https://fdnd-agency.directus.app/items/bib_users_stekjes?filter=%7B"bib_users_id":5%7D');
+   const likedstekjesResponseJSON = await likedStekjes.json();
+
+  
 
    // Render de 'index.liquid' pagina en geef de opgehaalde data mee
    response.render('index.liquid', {
-    stekjes : stekjesResponseJSON.data
+    stekjes: stekjesResponseJSON.data,
+    likes: likedstekjesResponseJSON.data
    })
 })
 
 // GET route voor de detailpagina van een stekje ('/stekjes/:id')
-app.get('/stekjes/:id', async function (request, response) {
-  // Haal het ID van het stekje uit de URL
-  const stekjeId = request.params.id;
+// app.get('/stekjes', async function (request, response) {
+//   // Haal het ID van het stekje uit de URL
+//   const stekjeId = request.params.id;
 
-  // Doe een fetch-verzoek naar de API om de specifieke stekje-data op te halen
-  const stekjeResponse = await fetch(`https://fdnd-agency.directus.app/items/bib_stekjes/${stekjeId}`);
-  // Zet de response om in JSON-formaat
-  const stekjeData = await stekjeResponse.json();
+//   // Doe een fetch-verzoek naar de API om de specifieke stekje-data op te halen
+//   const stekjeResponse = await fetch(`https://fdnd-agency.directus.app/items/bib_stekjes/${stekjeId}`);
+//   // Zet de response om in JSON-formaat
+//   const stekjeData = await stekjeResponse.json();
 
+
+  
+
+// test
+  app.get('/stekjes/:id', async function (request, response) {
+    // Haal het ID van het stekje uit de URL
+    const stekjeId = request.params.id;
+  
+    // Doe een fetch-verzoek naar de API om de specifieke stekje-data op te halen
+    const stekjeResponse = await fetch(`https://fdnd-agency.directus.app/items/bib_users_stekjes?filter=%7B%22bib_users_id%22:5%7D`);
+    // Zet de response om in JSON-formaat
+    const stekjeData = await stekjeResponse.json();
+
+
+
+
+  
   // Render de 'stekjes.liquid' pagina en geef de opgehaalde stekje-data mee
-  response.render('stekjes.liquid', { stekje: stekjeData.data })
+  response.render('stekjes.liquid', { stekje: stekjeData.data})
 });
 
 // POST route voor het verwerken van formulieren op de homepage ('/')
@@ -97,3 +120,5 @@ app.set('port', process.env.PORT || 8006)
 app.listen(app.get('port'), function () {
   console.log(`Application started on http://localhost:${app.get('port')}`)
 })
+
+
