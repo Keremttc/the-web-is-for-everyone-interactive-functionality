@@ -5,34 +5,37 @@
 </header>
 
 <main>
-    <section>
+    <section class="page-header">
         <h1>Stekjes</h1>
     </section>
+    <section class="stekjes-overview">
+        <h2>Vind jouw favoriet in onze geliefde collectie!</h2>
 
-    <h2>Vind jouw favoriet in onze geliefde collectie!</h2>
-
-    {% if stekjes.size > 0 %}
-        {% for stekje in stekjes %}
-            
-            <article class="images">
+        {% if stekjes.size > 0 %}
+        <div class="stekjes-container">
+            {% for stekje in stekjes %}
+            <article class="card-stekje">
                 <a href="/stekjes/{{ stekje.id }}">
-                    <p>{{ stekje.naam }}</p>
+                    <h3>{{ stekje.naam }}</h3>
+
+                    <img class="stekjes-img" src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}"
+                        alt="Foto van stekje {{ stekje.naam }}" width="290" height="390">
+
+
+                    <form action="/stekjes/{{ stekje.id }}" method="POST" data-enhanced="form-{{ id }}">
+                        <input type="hidden" name="from" value="{{ stekje.id }}">
+                        <button type="submit" class="like-button" aria-label="Like {{ stekje.naam }}">
+                            <img class="heart" src="/assets/heart.png" alt="Like knop" width="50" height="50">
+                        </button>
+                    </form>
                 </a>
-                <img src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}" 
-                     alt="Foto van stekje {{ stekje.naam }}" 
-                     width="200" height="250">
-                <form action="/stekjes/{{ stekje.id }}" method="POST">
-                    <input type="hidden" name="from" value="{{ stekje.id }}">
-                    <button type="submit" class="like-button" aria-label="Like {{ stekje.naam }}">
-                        <img class="heart" src="/assets/like.svg" alt="Like knop" width="30" height="30">
-                    </button>
-                </form>
             </article>
-            
-        {% endfor %}
+            {% endfor %}
+        </div>
         {% else %}
         <p>Er zijn momenteel geen stekjes beschikbaar.</p>
-    {% endif %}
-   
+        {% endif %}
+    </section>
     
 </main>
+
