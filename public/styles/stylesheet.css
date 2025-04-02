@@ -55,6 +55,7 @@ html {
 	--line-height-paragraph-big-screen: 3em;
 
 	--image-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+	--radius:1rem;
 }
 
 .btn-gevel {
