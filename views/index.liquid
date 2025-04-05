@@ -5,9 +5,9 @@
 </header>
 
 <main>
-    <section class="page-header">
+    <header class="page-header">
         <h1>Stekjes</h1>
-    </section>
+    </header>
     <section class="stekjes-overview">
         <h2>Vind jouw favoriet in onze geliefde collectie!</h2>
 
@@ -18,14 +18,13 @@
                 <a href="/stekjes/{{ stekje.id }}">
                     <h3>{{ stekje.naam }}</h3>
 
-                    <img class="stekjes-img" src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}"
-                        alt="Foto van stekje {{ stekje.naam }}" width="290" height="390">
-
-
+                    <img class="stekjes-img" src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}" 
+                    alt="Afbeelding van stekje {{ stekje.naam }} in een pot" width="290" height="390">
+               
                     <form action="/stekjes/{{ stekje.id }}" method="POST" data-enhanced="form-{{ id }}">
                         <input type="hidden" name="from" value="{{ stekje.id }}">
-                        <button type="submit" class="like-button" aria-label="Like {{ stekje.naam }}">
-                            <img class="heart" src="/assets/heart.png" alt="Like knop" width="50" height="50">
+                        <button class="like-button">
+                            <img class="heart" src="/assets/heart.png" alt="Geef dit stekje een Like" width="50" height="50">
                         </button>
                     </form>
                 </a>

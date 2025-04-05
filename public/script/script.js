@@ -1,7 +1,17 @@
+// 1. Selecteer de hamburger button
+let hamburgerButton = document.querySelector('.hamburger');
+
+// 2. Voeg de event listener toe
+hamburgerButton.addEventListener('click', toggleMenu);
+
+// 3. Toggle de active class bij de .nav
 function toggleMenu() {
   document.querySelector(".nav").classList.toggle("active");
 }
-  // Hieronder gaan we ervan uit dat je een knop hebt met de class 'like-button'
+
+
+  
+// Hieronder gaan we ervan uit dat je een knop hebt met de class 'like-button'
 const likeButtons = document.querySelectorAll('.like-button')
 
 
