@@ -42,5 +42,16 @@ Voor dit herontwerp was het van belang om het kleurcontrast te testen in verband
 In deze sprint heb ik ook gewerkt aan verschillende UI-states, zoals een loading state en error state. Hieronder staan een aantal voorbeelden van de uitgewerkte states. Sommige states heb ik al volledig uitgewerkt, daarin tegen heb ik nog geen 'succesion-state'. Zo wil ik bijvoorbeeld de succesion-state nog toevoegen aan de 'loading-state' knop om te zorgen voor een duidelijke feedback.
 
 
+<img width="350" alt="Image" src="https://github.com/user-attachments/assets/96983e91-a52e-40ee-bbaf-056e41b11a4a"/>
+
+<img width="350" alt="Image" src="https://github.com/user-attachments/assets/00c1a63d-5bb0-4592-9f43-81dfd5351135"/>
+
+## featers
+
+Binnen de interactie geef ik zowel feedback als feedforward aan de gebruiker, zo weet de gebruiker duidelijk wat hen te verwachten staat. De muis verandert in een pointer zodra hij op de like terrecht komt. Bij een klik krijg je een 'Loading' animatie te zien. Dit geeft feedback aan de gebruiker dat er iets gebeurt op basis van de klik en feedforward door een laadanimatie. 
+
+## Progressive Enhancement
+
+Progressive enhancement bestaat uit drie stappen. De eerste stap is ervoor zorgen dat de functie werkt zonder enige styling of extra’s, zodat het op elk apparaat of in elke browser bruikbaar is. In de tweede stap voeg je eenvoudige styling toe, zoals fonts, kleuren en afmetingen, om de uitstraling te verbeteren zonder de functionaliteit te verstoren. De derde stap omvat het toevoegen van animaties en andere visuele verbeteringen. Dit doe je als laatste, omdat je ervoor wilt zorgen dat de basisfunctionaliteit eerst goed werkt. Bij deze stap houd je rekening met het gebruik van @supports, zodat als de browser de animatie of styling niet ondersteunt, de functionaliteit van stap 1 alsnog werkt.
 
 
