@@ -268,8 +268,7 @@ img {
     button {
         all: unset;
         cursor: pointer;
-        display: flex;
-        justify-content: flex-start; 
+       
     }
     button.like-button {
         position: relative;

@@ -35,6 +35,7 @@ app.get('/', async function (request, response) {
 
    // Render de 'index.liquid' pagina en geef de opgehaalde data mee
    response.render('index.liquid', {
+    // stekes empty state, onder
     stekjes: stekjesResponseJSON.data,
     likes: likedstekjesResponseJSON.data
    })
