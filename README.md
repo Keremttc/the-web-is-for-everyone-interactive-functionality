@@ -52,6 +52,4 @@ Binnen de interactie geef ik zowel feedback als feedforward aan de gebruiker, zo
 
 ## Progressive Enhancement
 
-Progressive enhancement bestaat uit drie stappen. De eerste stap is ervoor zorgen dat de functie werkt zonder enige styling of extra’s, zodat het op elk apparaat of in elke browser bruikbaar is. In de tweede stap voeg je eenvoudige styling toe, zoals fonts, kleuren en afmetingen, om de uitstraling te verbeteren zonder de functionaliteit te verstoren. De derde stap omvat het toevoegen van animaties en andere visuele verbeteringen. Dit doe je als laatste, omdat je ervoor wilt zorgen dat de basisfunctionaliteit eerst goed werkt. Bij deze stap houd je rekening met het gebruik van @supports, zodat als de browser de animatie of styling niet ondersteunt, de functionaliteit van stap 1 alsnog werkt.
-
-
+Progressive enhancement bestaat uit drie stappen. De eerste stap is ervoor zorgen dat de functie werkt zonder enige styling of extra’s, zodat het op elk apparaat of in elke browser bruikbaar is. In de tweede stap voeg je eenvoudige styling toe, zoals fonts, kleuren en afmetingen, om de uitstraling te verbeteren zonder de functionaliteit te verstoren. De derde stap omvat het toevoegen van animaties en andere visuele verbeteringen. 
